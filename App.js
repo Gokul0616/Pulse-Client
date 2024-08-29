@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import hideNavigationBar from "./src/middlewares/hiddenNavigationBar";
+import GeneralNavigation from "./src/navigation/general";
+import { StatusBar } from "expo-status-bar";
 
-export default function App() {
+const App = () => {
+  const handleTouch = () => {
+    hideNavigationBar();
+  };
+
+  useEffect(() => {
+    hideNavigationBar();
+    const intervalId = setInterval(hideNavigationBar, 500);
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <TouchableWithoutFeedback onPress={handleTouch}>
+      <View style={styles.container}>
+        <StatusBar style="inverted" />
+        <GeneralNavigation />
+      </View>
+    </TouchableWithoutFeedback>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
+
+export default App;
