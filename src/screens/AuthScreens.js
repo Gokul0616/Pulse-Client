@@ -12,10 +12,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 import { StatusBar } from "expo-status-bar";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { Font, fontRoboto } from "../../general/fontRoboto";
+import { Font, fontRoboto } from "../general/fontRoboto";
 import { useState } from "react";
-import GeneralNavbar from "../../components/generalNavbar";
-import AlertMessage from "../../components/alert";
+import GeneralNavbar from "../components/generalNavbar";
+import AlertMessage from "../components/alert";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+?[1-9]\d{1,14}$/;
@@ -65,6 +65,7 @@ const CreateAccountScreen = () => {
   const [inputValue, setInputValue] = useState("");
   const [otpValue, setOtpValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [profilePicture, setProfilePicture] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -156,7 +157,9 @@ const CreateAccountScreen = () => {
       setProfilePicture(result.assets[0].uri);
     }
   };
-
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
@@ -219,16 +222,28 @@ const CreateAccountScreen = () => {
           <Text style={styles.otpText}>
             Make sure Don't forget your password
           </Text>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Create Password"
-            secureTextEntry
-            cursorColor={"#ff4040"}
-            placeholderTextColor="#888"
-            autoCapitalize="none"
-            value={passwordValue}
-            onChangeText={(text) => setPasswordValue(text)}
-          />
+          <View>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Create Password"
+              cursorColor={"#ff4040"}
+              placeholderTextColor="#888"
+              secureTextEntry={!isPasswordVisible}
+              autoCapitalize="none"
+              value={passwordValue}
+              onChangeText={(text) => setPasswordValue(text)}
+            />
+            <TouchableOpacity
+              style={styles3.eyeIcon}
+              onPress={togglePasswordVisibility}
+            >
+              <Icon
+                name={isPasswordVisible ? "eye-off" : "eye"}
+                size={24}
+                color="#888"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       ) : (
         <View style={styles2.container2}>
@@ -246,7 +261,7 @@ const CreateAccountScreen = () => {
                   />
                 ) : (
                   <Image
-                    source={require("../../../assets/appImages/emptyProfile.jpg")}
+                    source={require("../../assets/appImages/emptyProfile.jpg")}
                     style={styles2.profileImage}
                   />
                 )}
@@ -255,7 +270,7 @@ const CreateAccountScreen = () => {
 
                 <View style={styles2.cameraIconContainer}>
                   <Image
-                    source={require("../../../assets/appImages/profilecamera.png")}
+                    source={require("../../assets/appImages/profilecamera.png")}
                     style={styles2.cameraIcon}
                   />
                 </View>
@@ -316,7 +331,7 @@ const CreateAccountScreen = () => {
 
           <TouchableOpacity style={styles.signUpButton}>
             <Image
-              source={require("../../../assets/appImages/icon/google.png")}
+              source={require("../../assets/appImages/icon/google.png")}
               style={styles.icon}
             />
             <Text style={styles.buttonText}>Sign up with Google</Text>
@@ -324,7 +339,7 @@ const CreateAccountScreen = () => {
 
           <TouchableOpacity style={styles.signUpButton}>
             <Image
-              source={require("../../../assets/appImages/icon/facebook.png")}
+              source={require("../../assets/appImages/icon/facebook.png")}
               style={styles.icon}
             />
             <Text style={styles.buttonText}>Sign up with Facebook</Text>
@@ -733,7 +748,7 @@ const AuthScreen = () => {
 
   return (
     <ImageBackground
-      source={require("../../../assets/appImages/HomeImage.jpg")}
+      source={require("../../assets/appImages/HomeImage.jpg")}
       style={styles4.background}
       resizeMode="cover"
     >
@@ -744,7 +759,7 @@ const AuthScreen = () => {
           onPress={() => navigation.navigate("SigninScreen")}
         >
           <Image
-            source={require("../../../assets/appImages/icon/iphone.png")}
+            source={require("../../assets/appImages/icon/iphone.png")}
             style={{
               width: 25,
               height: 25,
@@ -757,7 +772,7 @@ const AuthScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity style={[styles4.loginButton, styles4.secondButton]}>
           <Image
-            source={require("../../../assets/appImages/icon/google.png")}
+            source={require("../../assets/appImages/icon/google.png")}
             style={{
               width: 25,
               height: 25,
@@ -777,7 +792,7 @@ const AuthScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity style={[styles4.loginButton, styles4.thirdButton]}>
           <Image
-            source={require("../../../assets/appImages/icon/facebook.png")}
+            source={require("../../assets/appImages/icon/facebook.png")}
             style={{
               width: 25,
               height: 25,

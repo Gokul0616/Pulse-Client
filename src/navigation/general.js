@@ -6,10 +6,10 @@ import {
   CreateAccountScreen as SignupScreen,
   SignInScreen,
   AuthScreen,
-} from "../screens/AuthScreen";
+} from "../screens/AuthScreens";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
-import HomeScreen from "../screens/Homescreen/HomeScreen";
+import HomeScreen from "../screens/HomeScreen";
 
 const Stack = createNativeStackNavigator();
 export default function GeneralNavigation() {
