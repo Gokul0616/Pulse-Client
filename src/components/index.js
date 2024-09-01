@@ -1,7 +1,19 @@
-import { StyleSheet, Modal, View, Text, TouchableOpacity } from "react-native";
-import React from "react";
 import { useNavigation } from "@react-navigation/core";
-
+import { Feather } from "@expo/vector-icons";
+import { StyleSheet, Modal, Text, View, TouchableOpacity } from "react-native";
+const GeneralNavbar = ({ onPressFun1, titleText, onPressFun2 }) => {
+  return (
+    <View style={styles.navbar}>
+      <TouchableOpacity onPress={onPressFun1}>
+        <Feather name="arrow-left" size={22} color={"black"} />
+      </TouchableOpacity>
+      <Text style={styles.headertext}>{titleText}</Text>
+      <TouchableOpacity onPress={onPressFun2}>
+        <Feather name="help-circle" size={22} color={"black"} />
+      </TouchableOpacity>
+    </View>
+  );
+};
 const AlertMessage = ({
   heading,
   message,
@@ -15,18 +27,18 @@ const AlertMessage = ({
 
   return (
     <Modal visible={showAlert} transparent={true} animationType="fade">
-      <View style={styles.alertContainer}>
-        <View style={styles.alertBox}>
+      <View style={styles2.alertContainer}>
+        <View style={styles2.alertBox}>
           <View style={{ padding: 20 }}>
-            <Text style={styles.alertTitle}>{heading}</Text>
-            <Text style={styles.alertMessage}>{message}</Text>
+            <Text style={styles2.alertTitle}>{heading}</Text>
+            <Text style={styles2.alertMessage}>{message}</Text>
           </View>
-          <View style={styles.buttonContainer}>
+          <View style={styles2.buttonContainer}>
             {isRight && (
               <TouchableOpacity
                 style={[
-                  styles.alertButton,
-                  styles.alertButtonPrimary,
+                  styles2.alertButton,
+                  styles2.alertButtonPrimary,
                   {
                     borderRightWidth: 1,
                     borderRightColor: "#ddd",
@@ -34,18 +46,18 @@ const AlertMessage = ({
                 ]}
                 onPress={triggerFunction}
               >
-                <Text style={styles.alertButtonTextPrimary}>
+                <Text style={styles2.alertButtonTextPrimary}>
                   {rightButtonText}
                 </Text>
               </TouchableOpacity>
             )}
             <TouchableOpacity
-              style={[styles.alertButton, styles.alertButtonSecondary]}
+              style={[styles2.alertButton, styles2.alertButtonSecondary]}
               onPress={() => {
                 setShowAlert(false);
               }}
             >
-              <Text style={styles.alertButtonTextSecondary}>Cancel</Text>
+              <Text style={styles2.alertButtonTextSecondary}>Cancel</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -53,10 +65,24 @@ const AlertMessage = ({
     </Modal>
   );
 };
-
-export default AlertMessage;
-
 const styles = StyleSheet.create({
+  navbar: {
+    display: "flex",
+    flexDirection: "row",
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+  },
+  headertext: {
+    textAlign: "center",
+    fontSize: 25,
+    fontFamily: "Roboto-Medium",
+    fontWeight: "bold",
+  },
+});
+
+const styles2 = StyleSheet.create({
   alertContainer: {
     flex: 1,
     justifyContent: "center",
@@ -111,3 +137,5 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Medium",
   },
 });
+
+export { GeneralNavbar, AlertMessage };

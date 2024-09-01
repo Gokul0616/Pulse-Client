@@ -14,8 +14,7 @@ import { StatusBar } from "expo-status-bar";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Font, fontRoboto } from "../general/fontRoboto";
 import { useState } from "react";
-import GeneralNavbar from "../components/generalNavbar";
-import AlertMessage from "../components/alert";
+import { GeneralNavbar, AlertMessage } from "../components";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\+?[1-9]\d{1,14}$/;
