@@ -304,7 +304,7 @@ const CreateAccountScreen = () => {
             />
           </View>
 
-          <TouchableOpacity style={styles.signUpButton} onPress={handleNext}>
+          <TouchableOpacity style={styles.saveButton} onPress={handleNext}>
             <Text style={styles.buttonText}>Save</Text>
           </TouchableOpacity>
         </View>
@@ -401,6 +401,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 20,
     marginTop: 20,
+  },
+  saveButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f5f5f5",
+    padding: 15,
+    borderRadius: 8,
   },
   icon: {
     width: 24,
@@ -752,7 +760,19 @@ const AuthScreen = () => {
       resizeMode="cover"
     >
       <StatusBar style="inverted" />
+
       <View style={styles4.overlay}>
+        <View>
+          <Image
+            source={require("../../assets/appImages/icon/icon.jpg")}
+            style={{
+              height: 100,
+              width: 100,
+              borderRadius: 50,
+              resizeMode: "contain",
+            }}
+          />
+        </View>
         <TouchableOpacity
           style={[styles4.loginButton, styles4.firstButton]}
           onPress={() => navigation.navigate("SigninScreen")}

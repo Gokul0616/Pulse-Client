@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { VideoPlayer } from "../components";
 
 // Dummy data for posts, tweets, and videos
 const posts = [
@@ -16,21 +17,17 @@ const HomeScreen = () => {
     } else if (item.type === "tweet") {
       return <Text style={styles.tweetStyle}>{item.content}</Text>;
     } else if (item.type === "video") {
-      return <Text style={styles.videoStyle}>{item.content}</Text>;
+      return <VideoPlayer />;
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={posts}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      <Text>Homescreen</Text>
     </SafeAreaView>
   );
 };
-export default HomeScreen;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -55,3 +52,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
 });
+
+export default HomeScreen;

@@ -19,14 +19,14 @@ export default function GeneralNavigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Auth"
+        // initialRouteName="Auth"
         screenOptions={{
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Auth" component={AuthScreen} />
+        {/* <Stack.Screen name="Auth" component={AuthScreen} />
         <Stack.Screen name="SigninScreen" component={SignInScreen} />
-        <Stack.Screen name="SignupScreen" component={SignupScreen} />
+        <Stack.Screen name="SignupScreen" component={SignupScreen} /> */}
         <Stack.Screen name="Home" component={MyTabs} />
       </Stack.Navigator>
     </NavigationContainer>

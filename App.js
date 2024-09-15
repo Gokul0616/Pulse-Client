@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler"; // Import GestureHandlerRootView
 import hideNavigationBar from "./src/middlewares/hiddenNavigationBar";
 import GeneralNavigation from "./src/navigation/general";
 import { StatusBar } from "expo-status-bar";
@@ -16,12 +17,14 @@ const App = () => {
   }, []);
 
   return (
-    <TouchableWithoutFeedback onPress={handleTouch}>
-      <View style={styles.container}>
-        <StatusBar style="inverted" />
-        <GeneralNavigation />
-      </View>
-    </TouchableWithoutFeedback>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <TouchableWithoutFeedback onPress={handleTouch}>
+        <View style={styles.container}>
+          <StatusBar style="inverted" />
+          <GeneralNavigation />
+        </View>
+      </TouchableWithoutFeedback>
+    </GestureHandlerRootView>
   );
 };
 
